@@ -66,10 +66,12 @@ print(availableStudents)
 """
 
 contador = 1
-while len(availableStudentsCodes) != 0:
+# len(availableStudentsCodes) != 0
+while contador < 56:
     # getting the first available and removing him from the data structures
     currentStudentCode = availableStudentsCodes[0]
-    print(f'Analysing student {currentStudentCode}')
+    print(f"Iteracao {contador}")
+    print(f'Aluno {currentStudentCode} em analise...')
     currentStudentData = availableStudents[currentStudentCode]
     availableStudentsCodes.remove(currentStudentCode)
     availableStudents.pop(currentStudentCode)
@@ -80,12 +82,12 @@ while len(availableStudentsCodes) != 0:
     '''
     studentAlocated = False
     for projectPreferenceCode in currentStudentData[0]:
-        print(f'attempting to put {currentStudentCode} in {projectPreferenceCode}')
+        print(f'Aluno {currentStudentCode} aplicando para {projectPreferenceCode}')
         projectPreferenceData = projects[projectPreferenceCode]
         # print(projectPreferenceData)
         # Case in which the student has the qualification for it and there is a spot in the project
-        if currentStudentData[1] >= projectPreferenceData[1] and projectPreferenceData[0] > len(projectPreferenceData[2]):
-            print(f'student {currentStudentCode} was put in {projectPreferenceCode}')
+        if currentStudentData[1] >= projectPreferenceData[1] and projectPreferenceData[0] > len(projectPreferenceData[2]): 
+            print(f'Aluno {currentStudentCode} esta qualificado e foi alocado em {projectPreferenceCode} com sucesso!\n')
             projects[projectPreferenceCode][2][currentStudentCode] = currentStudentData
             studentAlocated = True
             break
@@ -93,10 +95,10 @@ while len(availableStudentsCodes) != 0:
         # If there isnt a spot, I must fill the spot with the least qualified possible member to maximize the occupation of projects
         elif currentStudentData[1] >= projectPreferenceData[1] and projectPreferenceData[0] == len(projectPreferenceData[2]): 
             for studentCode, studentData in projectPreferenceData[2].items():
-                print(f'{currentStudentCode} or {studentCode}. Who is the least qualified?')
+                print(f'{currentStudentCode} ou {studentCode}. Quem e o menos qualificado?')
                 # if the current student has worse qualifications than any of the members there must be a substitution and the removed member must be reinserted in the availableStudents to be considered for another opportunity
                 if currentStudentData[1] < studentData[1]:
-                    print(f'{currentStudentCode} will take the place of {studentCode} as he is least qualified')
+                    print(f'{currentStudentCode} substituira o aluno {studentCode}, o qual e menos qualificado. ')
                     # making the substitution
                     projects[projectPreferenceCode][2].pop(studentCode)
                     projects[projectPreferenceCode][2][currentStudentCode] = studentData
@@ -105,21 +107,37 @@ while len(availableStudentsCodes) != 0:
                     availableStudentsCodes.append(studentCode)
                     studentAlocated = True
                     break
+                else:
+                    print(f'{studentCode} mais qualificado que {currentStudentCode}.')
             if studentAlocated:
                 break
+        
     if studentAlocated == False:
-        print(f'Student {currentStudentCode} cant go to his projects of preference')
+        print(f'Aluno {currentStudentCode} nao pode ser alocado em nenhum projeto de sua preferencia.\n')
         notAlocatedStudents[currentStudentCode] = currentStudentData
+    contador += 1
+
+    
     # For A9, the student canot go to any of his choices of projects (change contador to 9)
 """    if contador == 100:
         break
     else:
         contador += 1"""
 
-print(len(notAlocatedStudents))
-print(projects)
+#print(len(notAlocatedStudents))
+#print(projects)
+alocatedStudents = 0
+for key, value in projects.items():
+    #print(f'Projeto {key} com {len(value[2])} alunos alocados')
+    alocatedStudents += len(value[2])
+print(f"Em {contador} iteracoes foram alocados {alocatedStudents} alunos dos {len(availableStudents)} disponiveis.")
 
+# Função para mostrar os alunos alocados em cada ums dos 55 projetos
+def extract_keys(data, key):
+    if key in data:
+        sub_dict = data[key][2]
+        return list(sub_dict.keys())
+    return []
 
-    
-
-
+projectAllocation = {key: extract_keys(projects, key) for key in projects.keys()}
+print(projectAllocation)

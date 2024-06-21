@@ -1,1 +1,1 @@
-# Galey-Shapley-Allocation-Project
+# Gale Shapley Algorithm for Student Allocation
