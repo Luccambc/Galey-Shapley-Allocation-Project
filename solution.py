@@ -15,7 +15,6 @@ def addProject(projectLine):
     separatingInformation = removingParenthesis.split(", ")
     # print(separatingInformation)
     projectCode = separatingInformation[0]
-    availableStudentsCodes.append(projectCode)
     slots, qualification = map(int, separatingInformation[1:3])
     projects[projectCode] = [slots, qualification, {}] 
     # print(projects)
@@ -27,6 +26,7 @@ def addStudent(studentLine):
     provCode2 = provCode1.replace("(", "")
     studentCode = provCode2.replace(")", "")
     # print(studentCode)
+    availableStudentsCodes.append(studentCode)
     if studentCode == 'A177':
         separatingInformation = projectInformation.split(")(")
     else:
@@ -65,9 +65,7 @@ print(projects)
 print(availableStudents)
 """
 
-print(projects['P30'])
-print(availableStudents['P30'])
-
+contador = 1
 while len(availableStudentsCodes) != 0:
     # getting the first available and removing him from the data structures
     currentStudentCode = availableStudentsCodes[0]
@@ -82,9 +80,11 @@ while len(availableStudentsCodes) != 0:
     '''
     studentAlocated = False
     for projectPreferenceCode in currentStudentData[0]:
+        print(f'attempting to put {currentStudentCode} in {projectPreferenceCode}')
         projectPreferenceData = projects[projectPreferenceCode]
+        # print(projectPreferenceData)
         # Case in which the student has the qualification for it and there is a spot in the project
-        if currentStudentData[1] >= projectPreferenceData[1] and projectPreferenceData[0] < len(projectPreferenceData[2]):
+        if currentStudentData[1] >= projectPreferenceData[1] and projectPreferenceData[0] > len(projectPreferenceData[2]):
             print(f'student {currentStudentCode} was put in {projectPreferenceCode}')
             projects[projectPreferenceCode][2][currentStudentCode] = currentStudentData
             studentAlocated = True
@@ -110,6 +110,14 @@ while len(availableStudentsCodes) != 0:
     if studentAlocated == False:
         print(f'Student {currentStudentCode} cant go to his projects of preference')
         notAlocatedStudents[currentStudentCode] = currentStudentData
+    # For A9, the student canot go to any of his choices of projects (change contador to 9)
+"""    if contador == 100:
+        break
+    else:
+        contador += 1"""
+
+print(len(notAlocatedStudents))
+print(projects)
 
 
     
