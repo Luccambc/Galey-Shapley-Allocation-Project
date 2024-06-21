@@ -71,6 +71,7 @@ print(availableStudents['P30'])
 while len(availableStudentsCodes) != 0:
     # getting the first available and removing him from the data structures
     currentStudentCode = availableStudentsCodes[0]
+    print(f'Analysing student {currentStudentCode}')
     currentStudentData = availableStudents[currentStudentCode]
     availableStudentsCodes.remove(currentStudentCode)
     availableStudents.pop(currentStudentCode)
@@ -84,6 +85,7 @@ while len(availableStudentsCodes) != 0:
         projectPreferenceData = projects[projectPreferenceCode]
         # Case in which the student has the qualification for it and there is a spot in the project
         if currentStudentData[1] >= projectPreferenceData[1] and projectPreferenceData[0] < len(projectPreferenceData[2]):
+            print(f'student {currentStudentCode} was put in {projectPreferenceCode}')
             projects[projectPreferenceCode][2][currentStudentCode] = currentStudentData
             studentAlocated = True
             break
@@ -91,8 +93,10 @@ while len(availableStudentsCodes) != 0:
         # If there isnt a spot, I must fill the spot with the least qualified possible member to maximize the occupation of projects
         elif currentStudentData[1] >= projectPreferenceData[1] and projectPreferenceData[0] == len(projectPreferenceData[2]): 
             for studentCode, studentData in projectPreferenceData[2].items():
+                print(f'{currentStudentCode} or {studentCode}. Who is the least qualified?')
                 # if the current student has worse qualifications than any of the members there must be a substitution and the removed member must be reinserted in the availableStudents to be considered for another opportunity
                 if currentStudentData[1] < studentData[1]:
+                    print(f'{currentStudentCode} will take the place of {studentCode} as he is least qualified')
                     # making the substitution
                     projects[projectPreferenceCode][2].pop(studentCode)
                     projects[projectPreferenceCode][2][currentStudentCode] = studentData
@@ -104,6 +108,7 @@ while len(availableStudentsCodes) != 0:
             if studentAlocated:
                 break
     if studentAlocated == False:
+        print(f'Student {currentStudentCode} cant go to his projects of preference')
         notAlocatedStudents[currentStudentCode] = currentStudentData
 
 
