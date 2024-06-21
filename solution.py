@@ -1,7 +1,7 @@
 '''
 Data Structures:
 students = {"cod" : [[student project preferences in order], student qualification]}
-projects = {"cod" : [number of available slots, required qualification]}
+projects = {"cod" : [number of available slots, required qualification, [students in project]]}
 '''
 
 projects = {}
@@ -15,7 +15,7 @@ def addProject(projectLine):
     # print(separatingInformation)
     projectCode = separatingInformation[0]
     slots, qualification = map(int, separatingInformation[1:3])
-    projects[projectCode] = [slots, qualification]
+    projects[projectCode] = [slots, qualification, []] 
     # print(projects)
 
 def addStudent(studentLine):
