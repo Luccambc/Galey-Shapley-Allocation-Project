@@ -79,6 +79,7 @@ while len(availableStudentsCodes) != 0: # or contador == 100:
     for projectPreferenceCode in currentStudentProjectPreferences:
         print(f'Aluno {currentStudentCode} aplicando para {projectPreferenceCode}')
         projectPreferenceData = projects[projectPreferenceCode]
+
         projectPreferenceSlots = projectPreferenceData[0]   
         projectPreferenceMinGrade = projectPreferenceData[1]
         projectPreferenceStudents = projectPreferenceData[2]
@@ -86,7 +87,7 @@ while len(availableStudentsCodes) != 0: # or contador == 100:
         # Caso o aluno não tenha a nota necessário ele não será alocado 
         # Caso o aluno tenha a nota necessário e exista uma vaga disponível no projeto, ele será alocado
         if currentStudentGrade >= projectPreferenceMinGrade and projectPreferenceSlots > len(projectPreferenceStudents): 
-            print(f'Aluno {currentStudentCode} está qualificado e foi alocado em {projectPreferenceCode} com sucesso!\n')
+            print(f'Aluno {currentStudentCode} esta qualificado e foi alocado em {projectPreferenceCode} com sucesso!\n')
             # Insere o aluno nos alunos alocados naquele projeto de preferência
             projects[projectPreferenceCode][2][currentStudentCode] = currentStudentData
             currentStudentAllocated = True
@@ -117,7 +118,7 @@ while len(availableStudentsCodes) != 0: # or contador == 100:
                 elif currentStudentProjectPreferences.index(projectPreferenceCode) == studentProjectPreferences.index(projectPreferenceCode):
                     print(f'{currentStudentCode} ou {studentCode}. Quem e o menos qualificado?')
                     if currentStudentGrade < studentGrade:
-                        print(f'{currentStudentCode} substituira o aluno {studentCode}, o qual é menos qualificado.')
+                        print(f'{currentStudentCode} substituira o aluno {studentCode}, o qual e menos qualificado.')
                         # Substuição do atual pelo que está sendo analisado
                         projects[projectPreferenceCode][2].pop(studentCode)
                         projects[projectPreferenceCode][2][currentStudentCode] = currentStudentData
@@ -141,10 +142,11 @@ while len(availableStudentsCodes) != 0: # or contador == 100:
 # print(projects)
 alocatedStudents = 0
 for key, value in projects.items():
-    #print(f'Projeto {key} com {len(value[2])} alunos alocados')
     alocatedStudents += len(value[2])
 print(f"Em {contador} iteracoes foram alocados {alocatedStudents} alunos dos {len(students)} disponiveis.")
 
 
 projectAllocation = {key: extract_keys(projects, key) for key in projects.keys()}
 print(projectAllocation)
+
+
