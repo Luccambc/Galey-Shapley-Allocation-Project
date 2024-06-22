@@ -77,4 +77,8 @@ Após finalizarmos a seleção dos alunos, podemos exibir o resultado final da a
 
 3. Abaixo temos o resultado obtido. Dos 200 alunos disponíveis, cerca de 30% foram alocados
 
-![Resultado Final](./images/result.png)
+```python
+Em 214 iteracoes foram alocados 56 alunos dos 200 disponiveis.
+{'P1': ['A1', 'A2', 'A200'], 'P2': ['A32'], 'P3': ['A4', 'A33'], 'P4': ['A5'], 'P5': ['A85', 'A185'], 'P6': ['A8'], 'P7': ['A117', 'A187'], 'P8': ['A18', 'A188'], 'P9': ['A23', 'A26'], 'P10': ['A24'], 'P11': [], 'P12': ['A31'], 'P13': [], 'P14': ['A41', 'A43'], 'P15': ['A44', 'A135'], 'P16': ['A42'], 'P17': ['A61'], 'P18': ['A101'], 'P19': [], 'P20': ['A52'], 'P21': ['A145'], 'P22': ['A144'], 'P23': ['A197'], 'P24': ['A91'], 'P25': ['A104'], 'P26': ['A48', 'A93'], 'P27': ['A81', 'A83'], 'P28': ['A127'], 'P29': ['A63'], 'P30': ['A3'], 'P31': [], 'P32': [], 'P33': [], 'P34': ['A174'], 'P35': ['A55'], 'P36': ['A56', 'A68'], 'P37': ['A137'], 'P38': ['A107'], 'P39': [], 'P40': ['A6'], 'P41': ['A7', 'A27'], 'P42': [], 'P43': ['A46'], 'P44': ['A82'], 'P45': ['A155'], 'P46': [], 'P47': ['A58'], 'P48': ['A35'], 'P49': ['A159'], 'P50': [], 'P51': ['A96'], 'P52': [], 'P53': ['A60', 'A95'], 'P54': [], 'P55': []}
+
+```
